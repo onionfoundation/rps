@@ -1,0 +1,7 @@
+rps-map
+(dominates :rock)
+(dominates :scissors)
+(-main)
+(use 'rps.core :reload)
+(-main)
+quit
