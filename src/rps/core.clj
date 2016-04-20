@@ -32,7 +32,27 @@
 (defrecord RandomPlayer []
   Player
   (choose [_] (rand-nth choices))
-  (update-player [_,_,_] this ) )
+  (update-player [this,_,_] this ) )
+
+(defrecord StubbornPlayer [choice]
+  Player
+  (choose [_] (choice))
+  (update-player [this,_,_] this) )
+
+(defrecord MeanPlayer [last-winner]
+  Player
+  (choose [_]
+    (if last-winner last-winner (rand-nth choices)))
+  (update-player [_,p1-choice,p2-choice]
+    (->MeanPlayer (when (iwon? p1-choice p2-choice) p1-choice))) )
+
+(defn game
+  "Play Rock Paper Scissors!"
+  [p1, p2, rounds]
+  ;; loop with 5 variables
+  ;; p1, p2, p1-curr-score, p2-curr-score, rounds-remaining
+  
+  )
 
 (defn -main
   "Rock Paper Scissors - interactive game!"
